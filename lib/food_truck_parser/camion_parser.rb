@@ -36,8 +36,8 @@ module FoodTruckParser
               begin
                 travel_time_response = @travel_time_responses[location] ||= TravelTime.new(from: @from_address, to: location).compute
                 spots << Spot.new(date_interval: date_interval, location: location, travel_duration: travel_time_response[:duration], restaurant: RESTAURANT_NAME)
-              rescue FoodTruckParser::TravelTime::ZeroResultsError
-                @logger.warn "Couldn't find travel time for #{@from_address} -> #{location}"
+              rescue FoodTruckParser::TravelTime::Error => e
+                @logger.warn "Couldn't find travel time for #{@from_address} -> #{location} (#{e.class} : #{e.message})"
               end
             end
           end
