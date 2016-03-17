@@ -24,8 +24,12 @@ module FoodTruckParser
         date_infos.each do |date_info|
           date_interval = parse_time(fetch_date(date_info), fetch_time(date_info))
           location = fetch_location(date_info)
-          travel_time_response = @travel_time_responses[location] ||= TravelTime.new(from: @from_address, to: location).compute
-          spots << Spot.new(date_interval: date_interval, location: location, travel_duration: travel_time_response[:duration], restaurant: RESTAURANT_NAME)
+          begin
+            travel_time_response = @travel_time_responses[location] ||= TravelTime.new(from: @from_address, to: location).compute
+            spots << Spot.new(date_interval: date_interval, location: location, travel_duration: travel_time_response[:duration], restaurant: RESTAURANT_NAME)
+          rescue FoodTruckParser::TravelTime::ZeroResultsError
+            @logger.warn "Couldn't find travel time for #{@from_address} -> #{location}"
+          end
         end
       rescue OpenURI::HTTPError => e
         @logger.warn "Error during #{RESTAURANT_NAME} parsing : #{e.message}"

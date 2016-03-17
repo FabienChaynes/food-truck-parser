@@ -9,6 +9,7 @@ module FoodTruckParser
 
     class RequestDeniedError < RuntimeError; end
     class InvalidRequestError < RuntimeError; end
+    class ZeroResultsError < RuntimeError; end
 
     def initialize(from:, to:, mode: 'walking')
       @from = from
@@ -22,6 +23,7 @@ module FoodTruckParser
       fail RequestDeniedError, travel_time_response['error_message'] if travel_time_response['status'] == 'REQUEST_DENIED'
       fail InvalidRequestError, travel_time_response if travel_time_response['status'] == 'INVALID_REQUEST'
       fail InvalidRequestError, travel_time_response unless travel_time_response['status'] == 'OK'
+      fail ZeroResultsError if travel_time_response['rows'].first['elements'].first['status'] == 'ZERO_RESULTS'
 
       {
         duration: travel_time_response['rows'].first['elements'].first['duration']['value']
