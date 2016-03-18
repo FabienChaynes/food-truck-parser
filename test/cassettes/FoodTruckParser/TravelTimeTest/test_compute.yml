@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=164%20Rue%20de%20Rivoli,%2075001%20Paris&key=&mode=walking&origins=5%20Avenue%20Anatole%20France,%2075007%20Paris
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - "*/*; q=0.5, application/xml"
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Fri, 18 Mar 2016 00:20:06 GMT
+      Expires:
+      - Sat, 19 Mar 2016 00:20:06 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Vary:
+      - Accept-Language
+      Content-Encoding:
+      - gzip
+      Server:
+      - mafe
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Alternate-Protocol:
+      - 443:quic,p=1
+      Alt-Svc:
+      - quic=":443"; ma=2592000; v="31,30,29,28,27,26,25"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAC/42QMWvDMBCFd/+K42anxHHSoGwekqVDitcSiqiOcsSWQJLd
+        QPB/rywb2kSFVIuQ3nvfk+6aAQAqcp619Gz0u1TKknPkEHbwBlg8r6HuCBRB
+        zb1pOIftZrks4FVadotiXy8qa41WHEItaZ/DwUr9QQinPNKN5U9OwRuoetKB
+        XIVm09Acm/DbCZ+wrPma8uMprOu8jxo1sf9GT1yzN7zWT+Bdqo4GTxc/ilg+
+        CTi3mP9l6mXTRUQpVuLeMCQRVJ2NQ37cuhbQsnYPaleiLP9RG77quzgWPL7g
+        jTz8nE7Zr6t53HfJIfsGRac9CTACAAA=
+    http_version: 
+  recorded_at: Fri, 18 Mar 2016 00:20:07 GMT
+recorded_with: VCR 3.0.1

@@ -3,12 +3,16 @@ require_relative '../../test_helper'
 
 class TravelTimeTest < Minitest::Test
   def test_compute
-    assert_equal({ duration: 2933 }, FoodTruckParser::TravelTime.new(from: '5 Avenue Anatole France, 75007 Paris', to: '164 Rue de Rivoli, 75001 Paris').compute)
+    VCR.use_cassette("FoodTruckParser/TravelTimeTest/test_compute") do
+      assert_equal({ duration: 2933 }, FoodTruckParser::TravelTime.new(from: '5 Avenue Anatole France, 75007 Paris', to: '164 Rue de Rivoli, 75001 Paris').compute)
+    end
   end
 
   def test_invalid_request
-    assert_raises FoodTruckParser::TravelTime::InvalidRequestError do
-      FoodTruckParser::TravelTime.new(from: nil, to: '164 Rue de Rivoli, 75001 Paris').compute
+    VCR.use_cassette("FoodTruckParser/TravelTimeTest/test_invalid_request") do
+      assert_raises FoodTruckParser::TravelTime::InvalidRequestError do
+        FoodTruckParser::TravelTime.new(from: nil, to: '164 Rue de Rivoli, 75001 Paris').compute
+      end
     end
   end
 
