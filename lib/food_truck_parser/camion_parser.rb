@@ -13,10 +13,6 @@ module FoodTruckParser
     RESTAURANT_ADDRESSES = ['168 Rue Montmartre, Paris']
     RESTAURANT_NAME = 'Le Camion qui Fume'
 
-    def body
-      @body ||= open(TRACKING_URL)
-    end
-
     def retrieve_spots
       spots = []
 
@@ -49,6 +45,10 @@ module FoodTruckParser
     end
 
     private
+
+    def body
+      @body ||= open(TRACKING_URL)
+    end
 
     def fetch_date(date_info)
       date_info.css('.timeline-title').text

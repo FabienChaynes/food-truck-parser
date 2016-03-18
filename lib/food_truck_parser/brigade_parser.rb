@@ -12,10 +12,6 @@ module FoodTruckParser
     GOOGLE_MAPS_URL = 'https://www.google.com/maps/preview?f=q&hl=fr&q='
     RESTAURANT_NAME = 'La Brigade'
 
-    def body
-      @body ||= open(TRACKING_URL)
-    end
-
     def retrieve_spots
       spots = []
       begin
@@ -38,6 +34,10 @@ module FoodTruckParser
     end
 
     private
+
+    def body
+      @body ||= open(TRACKING_URL)
+    end
 
     def fetch_date(date_info)
       date_info.css('h3').text
