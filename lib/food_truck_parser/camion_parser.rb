@@ -24,11 +24,11 @@ module FoodTruckParser
           periods = fetch_periods(date_info)
 
           periods.each do |period|
-            time = fetch_time(period)
-            date_interval = parse_time(date, time)
             location = fetch_location(period)
 
             unless RESTAURANT_ADDRESSES.include?(location)
+              time = fetch_time(period)
+              date_interval = parse_time(date, time)
               begin
                 travel_time_response = @travel_time_responses[location] ||= TravelTime.new(from: @from_address, to: location).compute
                 spots << Spot.new(date_interval: date_interval, location: location, travel_duration: travel_time_response[:duration], restaurant: RESTAURANT_NAME)
