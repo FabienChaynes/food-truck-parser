@@ -8,11 +8,11 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: main.rb [options]"
 
-  opts.on('-f', '--from ', String, "From address") do |from_address|
+  opts.on('-f', '--from [FROM ADDRESS]', String, "From address") do |from_address|
     options[:from_address] = from_address
   end
 
-  opts.on_tail("-h", "--help [FROM ADDRESS]", "Show this message") do
+  opts.on_tail("-h", "--help", "Show this message") do
     puts opts
     exit
   end
