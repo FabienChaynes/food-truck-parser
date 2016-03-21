@@ -1,5 +1,5 @@
 require 'json'
-require 'rest-client'
+require 'net/http'
 
 module FoodTruckParser
 
@@ -8,6 +8,7 @@ module FoodTruckParser
     API_KEY = ENV['DISTANCE_MATRIX_API_KEY']
 
     class Error < RuntimeError; end
+    class RequestError < Error; end
     class RequestDeniedError < Error; end
     class InvalidRequestError < Error; end
     class NotFoundError < Error; end
@@ -20,7 +21,7 @@ module FoodTruckParser
     end
 
     def compute
-      travel_time_response = JSON.parse(RestClient.get(DISTANCE_API_URL, { params: { origins: @from, destinations: @to, key: API_KEY, mode: @mode } }))
+      travel_time_response = JSON.parse(call_api(origins: @from, destinations: @to, key: API_KEY, mode: @mode))
 
       fail RequestDeniedError, travel_time_response['error_message'] if travel_time_response['status'] == 'REQUEST_DENIED'
       fail InvalidRequestError, travel_time_response if travel_time_response['status'] == 'INVALID_REQUEST'
@@ -31,6 +32,16 @@ module FoodTruckParser
       {
         duration: travel_time_response['rows'].first['elements'].first['duration']['value']
       }
+    end
+
+    private
+
+    def call_api(params)
+      uri = URI(DISTANCE_API_URL)
+      uri.query = URI.encode_www_form(params)
+      res = Net::HTTP.get_response(uri)
+      fail RequestError, "#{res.code} : #{res.message} (#{res.uri})" unless res.is_a?(Net::HTTPSuccess)
+      res.body
     end
   end
 

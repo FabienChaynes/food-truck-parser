@@ -23,8 +23,8 @@ class CamionParserTest < Minitest::Test
       restaurant_parser = FoodTruckParser::CamionParser.new('32 rue de trévise, 75009 Paris')
       spot = restaurant_parser.retrieve_spots.first
 
-      assert_equal(DateTime.new(2016, 3, 18, 12)..DateTime.new(2016, 3, 18, 14, 30), spot.date_interval)
-      assert_equal('132 avenue de France, Paris', spot.location)
+      assert_equal(DateTime.new(2016, 3, 21, 19)..DateTime.new(2016, 3, 21, 22, 30), spot.date_interval)
+      assert_equal('132 Avenue de France, Paris', spot.location)
       assert_equal(4749, spot.travel_duration)
     end
   end
