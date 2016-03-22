@@ -1,5 +1,6 @@
-require 'open-uri'
+require 'cgi'
 require 'nokogiri'
+require 'open-uri'
 
 require_relative './restaurant_parser'
 require_relative './spot'
@@ -59,7 +60,7 @@ module FoodTruckParser
     end
 
     def fetch_location(period)
-      period.css('a').attr('href').text.sub(GOOGLE_MAPS_URL, '')
+      CGI::unescape(period.css('a').attr('href').text.sub(GOOGLE_MAPS_URL, ''))
     end
 
     def fetch_periods(date_info)
