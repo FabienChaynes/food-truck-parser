@@ -5,7 +5,10 @@ require 'optparse'
 require './config'
 require './lib/food_truck_parser'
 
-options = {}
+options = {
+  from_address: FROM_ADDRESS,
+  time_limit: TIME_LIMIT
+}
 
 OptionParser.new do |opts|
   opts.banner = "Usage: main.rb [options]"
@@ -28,8 +31,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-from_address = options[:from_address] || FROM_ADDRESS
-spots = FoodTruckParser::BrigadeParser.new(from_address).retrieve_spots + FoodTruckParser::CamionParser.new(from_address).retrieve_spots
-spots.select { |s| s.nearer_than(options[:time_limit] || TIME_LIMIT) }.each do |spot|
+spots = FoodTruckParser::BrigadeParser.new(options[:from_address]).retrieve_spots + FoodTruckParser::CamionParser.new(options[:from_address]).retrieve_spots
+spots.select { |s| s.nearer_than(options[:time_limit]) }.each do |spot|
   puts "#{spot.restaurant} - #{spot.readable_date_interval} : #{spot.location} (#{spot.travel_duration_minutes} min)"
 end
