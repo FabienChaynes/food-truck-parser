@@ -23,7 +23,7 @@ class BrigadeParserTest < Minitest::Test
       restaurant_parser = FoodTruckParser::BrigadeParser.new('32 rue de trévise, 75009 Paris')
       spot = restaurant_parser.retrieve_spots.first
 
-      assert_equal(DateTime.new(2016, 3, 22, 12)..DateTime.new(2016, 3, 22, 14), spot.date_interval)
+      assert_equal(DateTime.new(2016, 3, 24, 12)..DateTime.new(2016, 3, 24, 14), spot.date_interval)
       assert_equal('132, avenue de France,75013,Paris', spot.location)
       assert_equal(4749, spot.travel_duration)
     end

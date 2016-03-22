@@ -27,4 +27,14 @@ class TravelTimeTest < Minitest::Test
       FoodTruckParser::TravelTime.new(from: '164 Rue de Rivoli, 75001 Paris')
     end
   end
+
+  def test_travel_mode
+    FoodTruckParser.configure do |config|
+      config.travel_mode = 'driving'
+    end
+    VCR.use_cassette("FoodTruckParser/TravelTimeTest/test_travel_mode") do
+      assert_equal({ duration: 697 }, FoodTruckParser::TravelTime.new(from: '5 Avenue Anatole France, 75007 Paris', to: '164 Rue de Rivoli, 75001 Paris').compute)
+    end
+    FoodTruckParser.reset!
+  end
 end

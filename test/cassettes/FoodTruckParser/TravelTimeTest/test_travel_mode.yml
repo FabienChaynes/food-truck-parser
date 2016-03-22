@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=164%20Rue%20de%20Rivoli,%2075001%20Paris&key=&mode=walking&origins
+    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=164%20Rue%20de%20Rivoli,%2075001%20Paris&key=&mode=driving&origins=5%20Avenue%20Anatole%20France,%2075007%20Paris
     body:
       encoding: US-ASCII
       string: ''
@@ -46,10 +46,26 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |
         {
-           "destination_addresses" : [],
-           "origin_addresses" : [],
-           "rows" : [],
-           "status" : "INVALID_REQUEST"
+           "destination_addresses" : [ "164 Rue de Rivoli, 75001 Paris-1ER-Arrondissement, France" ],
+           "origin_addresses" : [ "5 Avenue Anatole France, 75007 Paris, France" ],
+           "rows" : [
+              {
+                 "elements" : [
+                    {
+                       "distance" : {
+                          "text" : "4.4 km",
+                          "value" : 4445
+                       },
+                       "duration" : {
+                          "text" : "12 mins",
+                          "value" : 697
+                       },
+                       "status" : "OK"
+                    }
+                 ]
+              }
+           ],
+           "status" : "OK"
         }
     http_version: 
   recorded_at: Tue, 22 Mar 2016 21:15:55 GMT

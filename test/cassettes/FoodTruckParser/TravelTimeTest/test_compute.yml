@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=164%20Rue%20de%20Rivoli,%2075001%20Paris&key&mode=walking&origins=5%20Avenue%20Anatole%20France,%2075007%20Paris
+    uri: https://maps.googleapis.com/maps/api/distancematrix/json?destinations=164%20Rue%20de%20Rivoli,%2075001%20Paris&key=&mode=walking&origins=5%20Avenue%20Anatole%20France,%2075007%20Paris
     body:
       encoding: US-ASCII
       string: ''
@@ -23,9 +23,9 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Mon, 21 Mar 2016 07:23:51 GMT
+      - Tue, 22 Mar 2016 21:15:55 GMT
       Expires:
-      - Tue, 22 Mar 2016 07:23:51 GMT
+      - Wed, 23 Mar 2016 21:15:55 GMT
       Cache-Control:
       - public, max-age=86400
       Vary:
@@ -68,5 +68,5 @@ http_interactions:
            "status" : "OK"
         }
     http_version: 
-  recorded_at: Mon, 21 Mar 2016 07:23:51 GMT
+  recorded_at: Tue, 22 Mar 2016 21:15:55 GMT
 recorded_with: VCR 3.0.1
