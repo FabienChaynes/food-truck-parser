@@ -1,3 +1,5 @@
+require 'logger'
+
 module FoodTruckParser
 
   class RestaurantParser
