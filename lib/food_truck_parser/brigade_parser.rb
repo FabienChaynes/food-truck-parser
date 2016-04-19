@@ -57,6 +57,7 @@ module FoodTruckParser
     end
 
     def parse_time(date_str, time_str)
+      date_str = translate_date(date_str)
       time = time_str.gsub(/MIDI |SOIR /, '').strip
       time_start, time_end = time.split('-')
       date_start = DateTime.parse("#{date_str} #{time_start}")
