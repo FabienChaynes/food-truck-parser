@@ -9,7 +9,7 @@ require_relative './travel_time'
 module FoodTruckParser
 
   class CamionParser < RestaurantParser
-    TRACKING_URL = 'http://click-eat.fr/trackthetruck/camionquifume'
+    TRACKING_URL = 'https://www.click-eat.fr/trackthetruck/camionquifume'
     GOOGLE_MAPS_URL = 'http://www.google.fr/maps?q='
     RESTAURANT_ADDRESSES = ['168 Rue Montmartre, Paris']
     RESTAURANT_NAME = 'Le Camion qui Fume'
