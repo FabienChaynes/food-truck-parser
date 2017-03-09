@@ -27,7 +27,7 @@ module FoodTruckParser
     protected
 
     def translate_date(str)
-      str = str.downcase
+      str = I18n.transliterate(str).downcase
       MONTHS_TRANSLATION.each { |fr, en| str.gsub!(fr, en) }
       str
     end
